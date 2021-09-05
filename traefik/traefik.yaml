@@ -1,0 +1,22 @@
+log:
+    level: DEBUG
+    filepath: "/etc/traefik/log/traefik.log"
+accesslog: true
+ping: true
+api:
+    dashboard: true
+    insecure: true
+    debug: true
+entryPoints:
+    web:
+        address: ":80"
+    websecure:
+        address: ":443"
+providers:
+    docker:
+        exposedByDefault: false
+        network: "internet"
+tls:
+    certificates:
+        - certFile: /certs/selfsigned.crt
+          keyFile: /certs/selfsigned.key

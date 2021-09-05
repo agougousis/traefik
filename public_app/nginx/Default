@@ -1,0 +1,32 @@
+upstream fpms {
+        server traefik-sample_public-app-fpm_1:9000;
+}
+
+server {
+    listen 80;
+    listen [::]:80;
+
+    server_name www.mydomain.gr;
+    root /var/www/html;
+
+    index index.html index.htm index.php;
+
+    access_log /var/log/access.log combined;
+    error_log /var/log/error.log warn;
+
+    # The "location /" block specifies that this is a match for all locations
+    # unless explicitly specified by another block like this: "location /<name>"
+    location / {
+        # the try_files means if Nginx receives a request to the URI that matches the block in the
+        # location, try the $uri first, and if the file is present, serve the file. The next part
+        # (/index.php) specifies a fallback option if the file does not exist.
+        try_files $uri $uri/ /index.php$is_args$args;
+    }
+
+    # Match based on the extension of the requested file. We are actually matching based on
+    # a suffix that starts with a dot.
+    location ~ \.php$ {
+        include snippets/fastcgi-php.conf;
+        fastcgi_pass fpms;
+    }
+}
