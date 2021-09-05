@@ -43,4 +43,9 @@ How to connect to traefik container:
 
 Traefik dashboard will be accessible at:  http://localhost:8080/dashboard/#/
 
+![dashboard](https://user-images.githubusercontent.com/5471589/132132429-a24dedc5-4954-4858-8227-53fc36c70e35.png)
+
 Traefik API endpoints will also be available e.g:  http://localhost:8080/api/version
+
+![api](https://user-images.githubusercontent.com/5471589/132132434-e1a2f231-7eb3-45b3-99bc-3c64e87a60d5.png)
+
