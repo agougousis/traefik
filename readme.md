@@ -1,9 +1,15 @@
-This is an example setup of Traefik v2 for 2 applications. 
+## Overview
+
+This is an example setup of Traefik v2 for 2 web applications. 
 One served through HTTP and one served through HTTPS (using self-signed certificates).
 
 The first app will be available through HTTP (port 80) at:  http://api.mydomain.gr/
 
 The second app will be available through HTTPS (port 443) at: https://www.mydomain.gr/  If you try to visit it through HTTP, you will get redirected.
+
+Static (startup) configuration is contained by traefik.yaml. There we define connections to providers, entrypoint definitions,
+SSJ certificate configuration, etc. Dynamic configuration (how the requests are handled by your system), is retrieved by Traefik
+through providers (here, Docker). Here we choose to implement dynamic configuration by attaching labels to Docker containers.
 
 ### Preparation
 
